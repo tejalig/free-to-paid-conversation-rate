@@ -106,3 +106,30 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-08-30 16:46:38
+-- create date table
+CREATE TABLE date_dimension (
+    date_key DATE PRIMARY KEY,
+    day_name VARCHAR(10),
+    month_name VARCHAR(10),
+    quarter INT,
+    year INT,
+    is_weekend BOOLEAN
+);
+
+INSERT INTO date_dimension (date_key, day_name, month_name, quarter, year, is_weekend)
+SELECT 
+    date_val,
+    DAYNAME(date_val),
+    MONTHNAME(date_val),
+    QUARTER(date_val),
+    YEAR(date_val),
+    IF(DAYOFWEEK(date_val) IN (1, 7), 1, 0) -- 1 is Sunday, 7 is Saturday
+FROM (
+    -- Combine all dates from all tables to ensure the calendar is complete
+    SELECT date_registered AS date_val FROM student_info
+    UNION
+    SELECT date_watched FROM student_engagement
+    UNION
+    SELECT date_purchased FROM student_purchases
+) AS all_dates
+WHERE date_val IS NOT NULL;

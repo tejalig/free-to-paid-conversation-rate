@@ -1,31 +1,47 @@
-# Business Questions:
+# 🎓 Course Conversion & Student Behavior Analysis
+An SQL-based deep dive into the student journey: from registration to paid subscription.
 
-### Conversion Funnel Analysis:
-Registration to Engagement: What percentage of students who register actually watch a video?
+### 📌 Project Overview
+This project analyses the conversion funnel of an online learning platform. By querying student registration, engagement, and purchase data, I identified key behaviours that lead to paid conversions, measured the speed of the onboarding process, and analysed seasonal trends to optimise marketing efforts.
 
-Engagement to Purchase: What percentage of students who watched a video ended up buying the course?
+#### 🛠️ Tech Stack
+Language: SQL (MySQL 8.0)
+
+Concepts: CTEs, Window Functions, Date Manipulation, Subqueries, Joins & Aggregations.
+
+Analysis Focus: Conversion Funnels, Time-to-Event (LTV), and User Segmentation.
+
+### 🔍 Key Business Questions
+#### The Conversion Funnel 🌪️ Understanding the "leaks" in our pipeline:
+
+Activation Rate: What percentage of students who register actually watch a video?
+
+Engagement-to-Sale: What percentage of students who watched a video ended up buying the course?
 
 Total Conversion: What percentage of all registered students became paid customers?
 
-### Time-to-Event Analysis
-Onboarding Speed: How many days pass between registration and the first time they watch a video?
+#### Time-to-Event Analysis ⏱️ Measuring the "speed" of the user journey:
 
-Conversion Lag: How many days does it take a student to purchase after their first engagement?
+Onboarding Speed: The average days between registration and the first video view.
 
-### Engagement Behavior
-Repeat Viewers: Do students who watch videos on multiple different days have a higher conversion rate than those who only watch once?
+Conversion Lag: The time it takes a student to purchase after their first engagement.
 
-Popular Dates: Are there specific months or days where registration or purchasing activity spikes (seasonality)?
+#### Engagement Behaviour & Lead Quality 📈 Identifying high-intent behaviours:
 
-Lead Quality
-Free vs. Engaged: Are "Free" users who never engage more or less likely to convert later compared to those who engage immediately?
+Retention Impact: Do students who watch videos on multiple days have a higher conversion rate than "one-hit" viewers?
 
-from 364 - data science
-- What is the free-to-paid conversion rate of students who watched a lecture on the 365 platform?
+Lead Quality: Comparing "Passive" users (never engaged) vs. "Active" users to determine who is more likely to convert.
 
-- What is the average duration between the registration date and when a student has watched a lecture for the first time (date of first-time engagement)?
+Seasonality: Identifying specific months or days where registration or purchasing activity spikes.
 
-- What is the average duration between the date of first-time engagement and when a student purchases a subscription for the first time (date of first-time purchase)?
+#### 📊 Insights (Summary)
 
-- How can we interpret these results, and what are their implications?
 
+📂 Database Schema
+The analysis is performed across three core tables:
+
+student_info: Registration dates and student IDs.
+
+student_engagement: Daily logs of video views.
+
+student_purchases: Transaction records and subscription dates.

@@ -88,7 +88,7 @@ WITH user_behavior AS (
 )
 SELECT 
     CASE 
-        WHEN unique_days_watched = 1 THEN 'Single Day Viewer'
+        WHEN unique_days_watched = 1 THEN 'Single Day Viewer' 
         ELSE 'Multi-Day Viewer'
     END AS viewer_type,
     ROUND(AVG(made_purchase) * 100, 2) AS conversion_rate
@@ -146,5 +146,3 @@ SELECT
     ROUND(AVG(made_purchase) * 100, 2) AS conversion_rate
 FROM user_segmentation
 GROUP BY user_group;
-
-
