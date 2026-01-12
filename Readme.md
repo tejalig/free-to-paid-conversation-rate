@@ -44,4 +44,8 @@ student_info: Registration dates and student IDs.
 
 student_engagement: Daily logs of video views.
 
+<<<<<<< HEAD
 student_purchases: Transaction records and subscription dates.
+=======
+student_purchases: Transaction records and subscription dates.
+>>>>>>> 1dbf8fe314cdfc71507632315eb185dcacb452ab
