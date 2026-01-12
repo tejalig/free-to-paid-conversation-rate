@@ -1,0 +1,52 @@
+
+### Descriptive Analysis
+
+# Count the total number of records in the each table - student_engagement, student_info, student_purchases
+select count(*) from db_course_conversions.student_engagement;
+select count(*) from db_course_conversions.student_info;
+select count(*) from db_course_conversions.student_purchases;
+
+student_engagement
+- student_id
+- date_watched
+
+student_info
+- student_id
+- date_registered
+
+student_purchases
+- purchase_id
+- student_id
+- date_purchased
+
+### Answering business questions
+
+## Conversion Funnel Analysis
+
+# Registration to Engagement: What percentage of students who register actually watch a video? - result : 50.70
+
+SELECT 
+    ROUND(COUNT(DISTINCT se.student_id) * 100.0 / COUNT(DISTINCT si.student_id), 2) AS Percent_Engaged
+FROM student_info si
+LEFT JOIN student_engagement se 
+    ON si.student_id = se.student_id;
+
+
+# Engagement to Purchase: What percentage of students who watched a video ended up buying the course?
+
+SELECT 
+    COUNT(DISTINCT sp.student_id) * 100.0 / COUNT(DISTINCT se.student_id) AS Percent_Engagement_to_Purchase
+FROM student_engagement se
+LEFT JOIN student_purchases sp 
+    ON se.student_id = sp.student_id;
+
+
+# Total Conversion: What percentage of all registered students became paid customers?
+
+SELECT COUNT(DISTINCT sp.student_id)*100.0/COUNT(DISTINCT si.student_id) AS Percent_Registered_to_Purchase
+FROM student_info si
+LEFT JOIN student_purchases sp
+    ON si.student_id = sp.student_id;
+
+
+
