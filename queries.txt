@@ -74,4 +74,77 @@ INNER JOIN student_purchases sp
     ON se.student_id = sp.student_id
 GROUP BY se.student_id;
 
+### Engagement Behavior
+
+# Repeat Viewers: Do students who watch videos on multiple different days have a higher conversion rate than those who only watch once?
+WITH user_behavior AS (
+    SELECT 
+        se.student_id,
+        COUNT(DISTINCT se.date_watched) AS unique_days_watched,
+        IF(COUNT(DISTINCT sp.purchase_id) > 0, 1, 0) AS made_purchase
+    FROM student_engagement se
+    LEFT JOIN student_purchases sp ON se.student_id = sp.student_id
+    GROUP BY se.student_id
+)
+SELECT 
+    CASE 
+        WHEN unique_days_watched = 1 THEN 'Single Day Viewer'
+        ELSE 'Multi-Day Viewer'
+    END AS viewer_type,
+    ROUND(AVG(made_purchase) * 100, 2) AS conversion_rate
+FROM user_behavior
+GROUP BY 1;
+
+# Popular Dates: Are there specific months or days where registration or purchasing activity spikes (seasonality)?
+WITH monthly_stats AS (
+    SELECT 
+        YEAR(date_registered) AS year,
+        MONTHNAME(date_registered) AS month_name, 
+        COUNT(student_id) AS monthly_regs
+    FROM student_info
+    GROUP BY 1, 2
+),
+total_stats AS (
+    SELECT COUNT(*) AS grand_total FROM student_info
+)
+SELECT 
+    ms.year,
+    ms.month_name,
+    ms.monthly_regs,
+    ROUND((ms.monthly_regs * 100.0) / ts.grand_total, 2) AS pct_contribution
+FROM monthly_stats ms
+CROSS JOIN total_stats ts
+ORDER BY pct_contribution DESC;
+
+
+# Lead Quality
+# Free vs. Engaged: Are "Free" users who never engage more or less likely to convert later compared to those who engage immediately?
+
+WITH user_segmentation AS (
+    SELECT 
+        si.student_id,
+        -- Check if they ever watched a video
+        CASE 
+            WHEN se.student_id IS NULL THEN 'Passive (No Engagement)'
+            ELSE 'Engaged (Watched Video)'
+        END AS user_group,
+        -- Check if they ever bought
+        CASE 
+            WHEN sp.student_id IS NULL THEN 0
+            ELSE 1
+        END AS made_purchase
+    FROM student_info si
+    LEFT JOIN (SELECT DISTINCT student_id FROM student_engagement) se 
+        ON si.student_id = se.student_id
+    LEFT JOIN (SELECT DISTINCT student_id FROM student_purchases) sp 
+        ON si.student_id = sp.student_id
+)
+SELECT 
+    user_group,
+    COUNT(*) AS total_users,
+    SUM(made_purchase) AS total_purchases,
+    ROUND(AVG(made_purchase) * 100, 2) AS conversion_rate
+FROM user_segmentation
+GROUP BY user_group;
+
 
