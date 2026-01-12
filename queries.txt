@@ -49,4 +49,29 @@ LEFT JOIN student_purchases sp
     ON si.student_id = sp.student_id;
 
 
+### Time-to-Event Analysis
+# Onboarding Speed: How many days pass between registration and the first time they watch a video?
+
+SELECT 
+    si.student_id, 
+    si.date_registered, 
+    MIN(se.date_watched) AS first_date_watched, 
+    DATEDIFF(MIN(se.date_watched), si.date_registered) AS days_to_onboard
+FROM student_info si
+INNER JOIN student_engagement se 
+    ON si.student_id = se.student_id
+GROUP BY si.student_id, si.date_registered;
+
+
+# Conversion Lag: How many days does it take a student to purchase after their first engagement?
+SELECT 
+    se.student_id, 
+    MIN(se.date_watched) AS first_engagement, 
+    MIN(sp.date_purchased) AS purchase_date,
+    DATEDIFF(MIN(sp.date_purchased), MIN(se.date_watched)) AS days_to_purchase
+FROM student_engagement se
+INNER JOIN student_purchases sp 
+    ON se.student_id = sp.student_id
+GROUP BY se.student_id;
+
 
