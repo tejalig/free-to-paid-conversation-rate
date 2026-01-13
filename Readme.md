@@ -38,7 +38,7 @@ Seasonality: Identifying specific months or days where registration or purchasin
 
 
 
-📂 Database Schema
+#### 📂 Database Schema
 The analysis is performed across three core tables: 
 
  - Student_Info : Holds information about the registered students
@@ -48,10 +48,10 @@ The analysis is performed across three core tables:
  The data holds information from the period of January 2021 to August 2023.
 
 
-#### Findings.
+#### 🔍 Findings
 
 ##### Descrptive anlaysis:
-The total number of students registered on the platform during this time were 40,979. Out of these students 20,778 of them watched videos on platform.
+- The total number of <b>students registered</b> on the platform during this time were <b>40,979</b>. Out of these students 20,778 of them watched videos on platform.
 
 13% of registered students had a subscription.
 
