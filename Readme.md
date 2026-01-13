@@ -54,8 +54,19 @@ The analysis is performed across three core tables:
 ##### Key Performance Indicators (KPIs)
 * **Total Registrations:** 40,979
 * **Activation Rate:** 50.7% (Registered students who watched a video)
+* **Dormant Users:** 49.3% (Registered students who haven't watched a video yet) 
 * **Engagement-to-Purchase Rate:** 13.51% (Active students who bought a subscription)
 * **Total Conversion Rate:** 7.65% (Total leads turned into customers)
+
+
+##### 🔍 Deep Dive Insights
+1. **The Content Hook:** Students who watch a video are significantly more likely to purchase than those who remain passive.
+2. **Onboarding Speed:** Most conversions happen within 0 days of the first video view (based on our `datediff` analysis).
+3. **Seasonality:** High-traffic periods were identified in June & August, suggesting a correlation with [New Year's / School Start].
+
+##### 💡 Recommendations
+* **Automated Nurturing:** Since 49.3% of users don't watch a video, implement an automated email sequence to drive users to their first lecture within 24 hours of sign-up.
+* **Targeted Retargeting:** Focus marketing spend on "Multi-Day Viewers," as they show the highest intent to purchase.
 
 
 
