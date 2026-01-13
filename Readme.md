@@ -51,9 +51,11 @@ The analysis is performed across three core tables:
 #### 🔍 Findings
 
 ##### Descrptive anlaysis:
-- The total number of <b>students registered</b> on the platform during this time were <b>40,979</b>. Out of these students 20,778 of them watched videos on platform.
 
-13% of registered students had a subscription.
+Metric,Value,Description
+Total Registrations,"40,979",Total leads acquired during the period.
+Active Learners,"20,776",Users who watched at least one lecture (50.7% Activation Rate).
+Paid Customers,"3,135",Users with an active subscription (7.65% Total Conversion).
 
 
 
