@@ -2,7 +2,7 @@
 An SQL-based deep dive into the student journey: from registration to paid subscription.
 
 ## 📌 Project Overview
-This project analyses the conversion funnel of an online learning platform. By querying student registration, engagement, and purchase data, I identified key behaviours that lead to paid conversions, measured the speed of the onboarding process, and analysed seasonal trends to optimise marketing efforts.
+Analyze the transition of 40k+ users from registration to active engagement and paid subscription to identify key conversion drivers.
 
 #### 🛠️ Tech Stack
 Language: SQL (MySQL 8.0)
@@ -13,6 +13,7 @@ Analysis Focus: Conversion Funnels, Time-to-Event (LTV), and User Segmentation.
 
 ## 🔍 Key Business Questions
 ### The Conversion Funnel 🌪️ Understanding the "leaks" in our pipeline:
+We tracked the user journey across three main stages: Acquisition, Activation, and Retention.
 
 Activation Rate: What percentage of students who register actually watch a video?
 
@@ -50,12 +51,11 @@ The analysis is performed across three core tables:
 
 #### 🔍 Findings
 
-##### Descrptive anlaysis:
-
-Metric,Value,Description
-Total Registrations,"40,979",Total leads acquired during the period.
-Active Learners,"20,776",Users who watched at least one lecture (50.7% Activation Rate).
-Paid Customers,"3,135",Users with an active subscription (7.65% Total Conversion).
+##### Key Performance Indicators (KPIs)
+* **Total Registrations:** 40,979
+* **Activation Rate:** 50.7% (Registered students who watched a video)
+* **Engagement-to-Purchase Rate:** 13.51% (Active students who bought a subscription)
+* **Total Conversion Rate:** 7.65% (Total leads turned into customers)
 
 
 
